@@ -2,11 +2,6 @@ import { Countdown } from "@/components/wedding/Countdown";
 import { RSVPForm } from "@/components/wedding/RSVPForm";
 import { SmoothScroll } from "@/components/wedding/SmoothScroll";
 import { useEffect, useState } from "react";
-import LottieModule from "lottie-react";
-
-// Safely handle Vite CJS/ESM interop where default exports sometimes return as objects
-const Lottie = (LottieModule as any).default || LottieModule;
-
 
 /* Section wrapper — carries `reveal-section` hook for GSAP ScrollTrigger. */
 function Section({
@@ -30,20 +25,25 @@ function Section({
 
 /* Lottie Bottom (Full Width Pinned) */
 function LottieBottom({ url, className = "" }: { url: string; className?: string }) {
-  const [data, setData] = useState<any>(null);
+  const [PlayerComp, setPlayerComp] = useState<any>(null);
 
   useEffect(() => {
-    fetch(url).then(r => r.json()).then(setData).catch(console.error);
-  }, [url]);
+    import("@lottiefiles/react-lottie-player")
+      .then((module) => {
+        setPlayerComp(() => module.Player);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className={`absolute bottom-0 left-0 w-full pointer-events-none z-0 mix-blend-multiply opacity-80 flex items-end justify-center ${className}`}>
       <div className="w-[150%] sm:w-full -ml-[25%] sm:ml-0 flex justify-center origin-bottom scale-110 sm:scale-100">
-        {data ? (
-          <Lottie
-            animationData={data}
+        {PlayerComp ? (
+          <PlayerComp
+            src={url}
             loop
             autoplay
+            background="transparent"
             style={{ width: "100%", height: "auto" }}
           />
         ) : (
@@ -56,19 +56,24 @@ function LottieBottom({ url, className = "" }: { url: string; className?: string
 
 /* Lottie Decoration (Absolute) */
 function LottieDecoration({ url, className, loop = true }: { url: string; className: string; loop?: boolean }) {
-  const [data, setData] = useState<any>(null);
+  const [PlayerComp, setPlayerComp] = useState<any>(null);
 
   useEffect(() => {
-    fetch(url).then(r => r.json()).then(setData).catch(console.error);
-  }, [url]);
+    import("@lottiefiles/react-lottie-player")
+      .then((module) => {
+        setPlayerComp(() => module.Player);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className={`animate-on-scroll absolute pointer-events-none z-0 ${className}`}>
-      {data && (
-        <Lottie
-          animationData={data}
+      {PlayerComp && (
+        <PlayerComp
+          src={url}
           loop={loop}
           autoplay
+          background="transparent"
           style={{ width: "100%", height: "100%" }}
         />
       )}
@@ -366,19 +371,24 @@ function Footer() {
 
 /* Lottie Inline (In-Flow) */
 function LottieInline({ url, className = "" }: { url: string; className?: string }) {
-  const [data, setData] = useState<any>(null);
+  const [PlayerComp, setPlayerComp] = useState<any>(null);
 
   useEffect(() => {
-    fetch(url).then(r => r.json()).then(setData).catch(console.error);
-  }, [url]);
+    import("@lottiefiles/react-lottie-player")
+      .then((module) => {
+        setPlayerComp(() => module.Player);
+      })
+      .catch(console.error);
+  }, []);
 
   return (
     <div className={`animate-on-scroll pointer-events-none z-0 ${className}`}>
-      {data ? (
-        <Lottie
-          animationData={data}
+      {PlayerComp ? (
+        <PlayerComp
+          src={url}
           loop
           autoplay
+          background="transparent"
           style={{ width: "100%", height: "100%" }}
         />
       ) : (

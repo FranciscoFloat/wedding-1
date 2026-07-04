@@ -16,4 +16,7 @@ export default defineConfig({
   nitro: {
     preset: "vercel",
   },
+  build: {
+    minify: false, // Fix lottie-web eval crash caused by variable mangling
+  },
 });
