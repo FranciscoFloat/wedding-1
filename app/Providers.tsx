@@ -14,7 +14,6 @@ export function Providers({ children }: { children: React.ReactNode }) {
       <TooltipProvider>
         <Toaster />
         {children}
-        <SmoothScroll />
       </TooltipProvider>
     </QueryClientProvider>
   )
