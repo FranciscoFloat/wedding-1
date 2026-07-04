@@ -119,15 +119,15 @@ function Hero() {
           14 · Junio · 2026
         </p>
 
-        <h1 className="animate-on-scroll font-serif text-6xl sm:text-8xl md:text-9xl leading-[0.95] text-cream drop-shadow-lg">
+        <h1 className="animate-on-scroll font-serif text-5xl sm:text-7xl md:text-9xl leading-[0.95] text-cream drop-shadow-lg">
           Sofía
-          <span className="block italic text-gold text-4xl sm:text-6xl md:text-7xl my-3 sm:my-4 drop-shadow-md">
+          <span className="block italic text-gold text-3xl sm:text-5xl md:text-7xl my-2 sm:my-4 drop-shadow-md">
             &
           </span>
           Mateo
         </h1>
 
-        <div className="animate-on-scroll flex items-center justify-center gap-4 my-6 drop-shadow-md">
+        <div className="animate-on-scroll flex items-center justify-center gap-3 sm:gap-4 my-4 sm:my-6 drop-shadow-md">
           <span className="h-px w-12 bg-gold/60" />
           <svg width="10" height="10" viewBox="0 0 10 10" className="text-gold">
             <circle cx="5" cy="5" r="2" fill="currentColor" />
@@ -157,8 +157,8 @@ function Story() {
     <Section id="historia" className="py-24 sm:py-32 relative">
       <LottieDecoration url="/lotties/Floral Animated Design.json" className="-bottom-20 -right-10 w-96 h-96 sm:w-[600px] sm:h-[600px] opacity-70 mix-blend-multiply" />
 
-      <div className="grid md:grid-cols-2 gap-16 items-center max-w-6xl mx-auto relative z-10">
-        <div className="animate-on-scroll relative h-[500px] sm:h-[700px] w-full rounded-2xl overflow-hidden shadow-2xl">
+      <div className="grid md:grid-cols-2 gap-10 sm:gap-16 items-center max-w-6xl mx-auto relative z-10">
+        <div className="animate-on-scroll relative h-[350px] sm:h-[500px] md:h-[700px] w-full rounded-2xl overflow-hidden shadow-2xl">
            <div 
              className="parallax-item absolute inset-0 w-full h-[120%] -top-[10%] bg-cover bg-[75%_center]"
              data-speed="0.15"
@@ -170,7 +170,7 @@ function Story() {
             <p className="animate-on-scroll text-xs uppercase tracking-[0.3em] text-gold mb-4">
               Nuestra historia
             </p>
-            <h2 className="animate-on-scroll font-serif text-4xl sm:text-6xl text-ink">
+            <h2 className="animate-on-scroll font-serif text-3xl sm:text-5xl text-ink">
               Cómo empezó todo
             </h2>
           </div>
@@ -226,7 +226,7 @@ function Details() {
         <p className="text-xs uppercase tracking-[0.3em] text-gold mb-4">
           Detalles del evento
         </p>
-        <h2 className="font-serif text-4xl sm:text-6xl text-ink mb-4">
+        <h2 className="font-serif text-3xl sm:text-5xl text-ink mb-4">
           Sábado, 14 de junio
         </h2>
         <p className="text-muted-foreground mb-16">
@@ -278,7 +278,7 @@ function RSVP() {
         <p className="text-xs uppercase tracking-[0.3em] text-gold mb-4">
           Confirmación
         </p>
-        <h2 className="font-serif text-4xl sm:text-6xl text-ink mb-4">
+        <h2 className="font-serif text-3xl sm:text-5xl text-ink mb-4">
           Acompáñanos
         </h2>
         <p className="text-muted-foreground">
@@ -308,7 +308,7 @@ function Gallery() {
           <p className="animate-on-scroll text-xs uppercase tracking-[0.3em] text-gold mb-4">
             Galería
           </p>
-          <h2 className="animate-on-scroll font-serif text-4xl sm:text-6xl text-ink">
+          <h2 className="animate-on-scroll font-serif text-3xl sm:text-5xl text-ink">
             Momentos nuestros
           </h2>
         </div>
@@ -340,11 +340,11 @@ function MapSection() {
         <p className="text-xs uppercase tracking-[0.3em] text-gold mb-4">
           Cómo llegar
         </p>
-        <h2 className="font-serif text-4xl sm:text-6xl text-ink">
+        <h2 className="font-serif text-3xl sm:text-5xl text-ink">
           Encuéntranos
         </h2>
       </div>
-      <div className="w-full h-[70vh] min-h-[420px] bg-secondary">
+      <div className="w-full h-[50vh] min-h-[350px] md:h-[70vh] bg-secondary">
         <iframe
           title="Ubicación de la boda"
           src="https://www.google.com/maps?q=Valle+de+Bravo,+Mexico&output=embed"
@@ -413,7 +413,7 @@ function Gifts() {
         <p className="animate-on-scroll text-xs uppercase tracking-[0.3em] text-gold mb-4">
           Mesa de Regalos
         </p>
-        <h2 className="animate-on-scroll font-serif text-4xl sm:text-6xl text-ink mb-6">
+        <h2 className="animate-on-scroll font-serif text-3xl sm:text-5xl text-ink mb-6">
           Un empujoncito...
         </h2>
         <p className="animate-on-scroll text-sm sm:text-base text-muted-foreground leading-relaxed max-w-2xl mx-auto">
@@ -421,26 +421,26 @@ function Gifts() {
         </p>
       </div>
 
-      <div className="animate-on-scroll relative z-10 inline-block text-left bg-secondary/20 border border-gold/30 rounded-2xl p-8 sm:p-12 shadow-sm">
+      <div className="animate-on-scroll relative z-10 block w-full max-w-md mx-auto text-left bg-secondary/20 border border-gold/30 rounded-2xl p-6 sm:p-12 shadow-sm">
         <p className="text-xs uppercase tracking-[0.3em] text-gold mb-6 text-center">
           Datos Bancarios
         </p>
         <div className="space-y-4 text-sm sm:text-base text-ink">
-          <div className="flex justify-between gap-8 border-b border-border/50 pb-3">
-            <span className="text-muted-foreground">Banco:</span>
-            <span className="font-medium">El banco de tu preferencia</span>
+          <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-8 border-b border-border/50 pb-3">
+            <span className="text-muted-foreground text-xs sm:text-sm">Banco:</span>
+            <span className="font-medium text-right">El banco de tu preferencia</span>
           </div>
-          <div className="flex justify-between gap-8 border-b border-border/50 pb-3">
-            <span className="text-muted-foreground">Titulares:</span>
-            <span className="font-medium">Sofía y Mateo</span>
+          <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-8 border-b border-border/50 pb-3">
+            <span className="text-muted-foreground text-xs sm:text-sm">Titulares:</span>
+            <span className="font-medium text-right">Sofía y Mateo</span>
           </div>
-          <div className="flex justify-between gap-8 border-b border-border/50 pb-3">
-            <span className="text-muted-foreground">Cuenta:</span>
-            <span className="font-medium tabular-nums tracking-wider">0123 4567 89</span>
+          <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-8 border-b border-border/50 pb-3">
+            <span className="text-muted-foreground text-xs sm:text-sm">Cuenta:</span>
+            <span className="font-medium tabular-nums tracking-wider text-right">0123 4567 89</span>
           </div>
-          <div className="flex justify-between gap-8 pb-1">
-            <span className="text-muted-foreground">CLABE:</span>
-            <span className="font-medium tabular-nums tracking-wider">012 345 6789 0123 4567</span>
+          <div className="flex flex-col sm:flex-row justify-between gap-1 sm:gap-8 pb-1">
+            <span className="text-muted-foreground text-xs sm:text-sm">CLABE:</span>
+            <span className="font-medium tabular-nums tracking-wider text-right break-all">012 345 6789 0123 4567</span>
           </div>
         </div>
       </div>
@@ -448,9 +448,12 @@ function Gifts() {
   );
 }
 
+import { Menu, X } from "lucide-react";
+
 /* -------- Header -------- */
 function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -468,26 +471,61 @@ function Header() {
   ];
 
   return (
-    <header
-      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? "py-4 bg-background/90 backdrop-blur-md shadow-sm border-b border-border/40" : "py-6 bg-transparent"}`}
-    >
-      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
-        <a href="#inicio" className="font-serif italic text-2xl text-gold drop-shadow-sm hover:opacity-80 transition-opacity">
-          S & M
-        </a>
-        <nav className="hidden md:flex items-center gap-8">
+    <>
+      <header
+        className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? "py-3 sm:py-4 bg-background/95 backdrop-blur-md shadow-sm border-b border-border/40" : "py-5 sm:py-6 bg-transparent"}`}
+      >
+        <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+          <a href="#inicio" className="font-serif italic text-2xl text-gold drop-shadow-sm hover:opacity-80 transition-opacity">
+            S & M
+          </a>
+          <nav className="hidden md:flex items-center gap-8">
+            {navLinks.map((link) => (
+              <a
+                key={link.name}
+                href={link.href}
+                className={`text-xs uppercase tracking-[0.2em] transition-colors hover:text-gold ${isScrolled ? "text-ink" : "text-cream"} drop-shadow-sm`}
+              >
+                {link.name}
+              </a>
+            ))}
+          </nav>
+          
+          <button 
+            className="md:hidden p-2 -mr-2 text-gold focus:outline-none"
+            onClick={() => setIsMobileMenuOpen(true)}
+            aria-label="Abrir menú"
+          >
+            <Menu className="w-6 h-6" />
+          </button>
+        </div>
+      </header>
+
+      {/* Mobile Menu Overlay */}
+      <div 
+        className={`fixed inset-0 z-[60] bg-background/98 backdrop-blur-lg flex flex-col items-center justify-center transition-all duration-500 ${isMobileMenuOpen ? "opacity-100 visible" : "opacity-0 invisible pointer-events-none"}`}
+      >
+        <button 
+          className="absolute top-6 right-6 p-2 text-gold focus:outline-none hover:rotate-90 transition-transform duration-300"
+          onClick={() => setIsMobileMenuOpen(false)}
+          aria-label="Cerrar menú"
+        >
+          <X className="w-8 h-8" />
+        </button>
+        <nav className="flex flex-col items-center gap-10">
           {navLinks.map((link) => (
             <a
               key={link.name}
               href={link.href}
-              className={`text-xs uppercase tracking-[0.2em] transition-colors hover:text-gold text-ink/80 drop-shadow-sm`}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="text-lg uppercase tracking-[0.3em] transition-colors hover:text-gold text-ink"
             >
               {link.name}
             </a>
           ))}
         </nav>
       </div>
-    </header>
+    </>
   );
 }
 
