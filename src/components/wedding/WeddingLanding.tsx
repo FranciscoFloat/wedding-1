@@ -2,6 +2,7 @@ import { Countdown } from "@/components/wedding/Countdown";
 import { RSVPForm } from "@/components/wedding/RSVPForm";
 import { SmoothScroll } from "@/components/wedding/SmoothScroll";
 import { useEffect, useState } from "react";
+import { Player as PlayerComp } from "@lottiefiles/react-lottie-player";
 
 /* Section wrapper — carries `reveal-section` hook for GSAP ScrollTrigger. */
 function Section({
@@ -25,16 +26,6 @@ function Section({
 
 /* Lottie Bottom (Full Width Pinned) */
 function LottieBottom({ url, className = "" }: { url: string; className?: string }) {
-  const [PlayerComp, setPlayerComp] = useState<any>(null);
-
-  useEffect(() => {
-    import("@lottiefiles/react-lottie-player")
-      .then((module) => {
-        setPlayerComp(() => module.Player);
-      })
-      .catch(console.error);
-  }, []);
-
   if (!PlayerComp) {
     return <div className={`py-10 sm:py-16 ${className}`} />;
   }
@@ -56,16 +47,6 @@ function LottieBottom({ url, className = "" }: { url: string; className?: string
 
 /* Lottie Decoration (Absolute) */
 function LottieDecoration({ url, className, loop = true }: { url: string; className: string; loop?: boolean }) {
-  const [PlayerComp, setPlayerComp] = useState<any>(null);
-
-  useEffect(() => {
-    import("@lottiefiles/react-lottie-player")
-      .then((module) => {
-        setPlayerComp(() => module.Player);
-      })
-      .catch(console.error);
-  }, []);
-
   if (!PlayerComp) return null;
 
   return (
@@ -371,16 +352,6 @@ function Footer() {
 
 /* Lottie Inline (In-Flow) */
 function LottieInline({ url, className = "" }: { url: string; className?: string }) {
-  const [PlayerComp, setPlayerComp] = useState<any>(null);
-
-  useEffect(() => {
-    import("@lottiefiles/react-lottie-player")
-      .then((module) => {
-        setPlayerComp(() => module.Player);
-      })
-      .catch(console.error);
-  }, []);
-
   if (!PlayerComp) {
     return <div className={`py-10 sm:py-16 ${className}`} />;
   }
