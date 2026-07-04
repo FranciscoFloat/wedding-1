@@ -1,8 +1,9 @@
-import { i as __toESM } from "../_runtime.mjs";
-import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
+import { r as __toESM } from "../_runtime.mjs";
+import { n as require_react, t as Player } from "../_libs/@lottiefiles/react-lottie-player+[...].mjs";
+import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { t as Lenis } from "../_libs/lenis.mjs";
 import { n as gsapWithCSS, t as ScrollTrigger } from "../_libs/gsap.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-CJ7fBBVy.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-R2QcnDpZ.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var WEDDING_DATE = /* @__PURE__ */ new Date("2027-06-14T17:00:00");
@@ -236,7 +237,6 @@ function SmoothScroll() {
 	}, []);
 	return null;
 }
-var Lottie = (0, import_react.lazy)(() => import("../_libs/lottie-react+lottie-web.mjs").then((n) => n.t));
 function Section({ id, children, className = "" }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id,
@@ -245,51 +245,43 @@ function Section({ id, children, className = "" }) {
 	});
 }
 function LottieBottom({ url, className = "" }) {
-	const [data, setData] = (0, import_react.useState)(null);
+	const [mounted, setMounted] = (0, import_react.useState)(false);
 	(0, import_react.useEffect)(() => {
-		if (typeof window === "undefined") return;
-		fetch(url).then((r) => r.json()).then(setData).catch(console.error);
-	}, [url]);
-	if (!data) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
+		setMounted(true);
+	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `absolute bottom-0 left-0 w-full pointer-events-none z-0 mix-blend-multiply opacity-80 flex items-end justify-center ${className}`,
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			className: "w-[150%] sm:w-full -ml-[25%] sm:ml-0 flex justify-center origin-bottom scale-110 sm:scale-100",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Suspense, {
-				fallback: null,
-				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lottie, {
-					animationData: data,
-					loop: true,
-					autoplay: true,
-					style: {
-						width: "100%",
-						height: "auto"
-					}
-				})
-			})
+			children: mounted ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
+				src: url,
+				loop: true,
+				autoplay: true,
+				background: "transparent",
+				style: {
+					width: "100%",
+					height: "auto"
+				}
+			}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-full h-full py-10 sm:py-16" })
 		})
 	});
 }
 function LottieDecoration({ url, className, loop = true }) {
-	const [data, setData] = (0, import_react.useState)(null);
+	const [mounted, setMounted] = (0, import_react.useState)(false);
 	(0, import_react.useEffect)(() => {
-		if (typeof window === "undefined") return;
-		fetch(url).then((r) => r.json()).then(setData).catch(console.error);
-	}, [url]);
-	if (!data) return null;
+		setMounted(true);
+	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `animate-on-scroll absolute pointer-events-none z-0 ${className}`,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Suspense, {
-			fallback: null,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lottie, {
-				animationData: data,
-				loop,
-				autoplay: true,
-				style: {
-					width: "100%",
-					height: "100%"
-				}
-			})
+		children: mounted && /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
+			src: url,
+			loop,
+			autoplay: true,
+			background: "transparent",
+			style: {
+				width: "100%",
+				height: "100%"
+			}
 		})
 	});
 }
@@ -629,26 +621,22 @@ function Footer() {
 	});
 }
 function LottieInline({ url, className = "" }) {
-	const [data, setData] = (0, import_react.useState)(null);
+	const [mounted, setMounted] = (0, import_react.useState)(false);
 	(0, import_react.useEffect)(() => {
-		if (typeof window === "undefined") return;
-		fetch(url).then((r) => r.json()).then(setData).catch(console.error);
-	}, [url]);
-	if (!data) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
+		setMounted(true);
+	}, []);
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `animate-on-scroll pointer-events-none z-0 ${className}`,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Suspense, {
-			fallback: null,
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lottie, {
-				animationData: data,
-				loop: true,
-				autoplay: true,
-				style: {
-					width: "100%",
-					height: "100%"
-				}
-			})
-		})
+		children: mounted ? /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
+			src: url,
+			loop: true,
+			autoplay: true,
+			background: "transparent",
+			style: {
+				width: "100%",
+				height: "100%"
+			}
+		}) : /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: "w-full h-full py-10 sm:py-16" })
 	});
 }
 function Gifts() {
