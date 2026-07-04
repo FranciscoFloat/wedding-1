@@ -4,11 +4,10 @@
   "sideEffects": false,
   "type": "module",
   "scripts": {
-    "dev": "vite dev",
-    "build": "vite build",
-    "build:dev": "vite build --mode development",
-    "preview": "vite preview",
-    "lint": "eslint .",
+    "dev": "next dev -p 8081",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
     "format": "prettier --write ."
   },
   "dependencies": {
