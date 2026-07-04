@@ -2,7 +2,10 @@ import { Countdown } from "@/components/wedding/Countdown";
 import { RSVPForm } from "@/components/wedding/RSVPForm";
 import { SmoothScroll } from "@/components/wedding/SmoothScroll";
 import { useEffect, useState } from "react";
-import Lottie from "lottie-react";
+import LottieModule from "lottie-react";
+
+// Safely handle Vite CJS/ESM interop where default exports sometimes return as objects
+const Lottie = (LottieModule as any).default || LottieModule;
 
 
 /* Section wrapper — carries `reveal-section` hook for GSAP ScrollTrigger. */
@@ -30,23 +33,22 @@ function LottieBottom({ url, className = "" }: { url: string; className?: string
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
     fetch(url).then(r => r.json()).then(setData).catch(console.error);
   }, [url]);
-
-  if (!data) {
-    return <div className={`py-10 sm:py-16 ${className}`} />;
-  }
 
   return (
     <div className={`absolute bottom-0 left-0 w-full pointer-events-none z-0 mix-blend-multiply opacity-80 flex items-end justify-center ${className}`}>
       <div className="w-[150%] sm:w-full -ml-[25%] sm:ml-0 flex justify-center origin-bottom scale-110 sm:scale-100">
-        <Lottie
-          animationData={data}
-          loop
-          autoplay
-          style={{ width: "100%", height: "auto" }}
-        />
+        {data ? (
+          <Lottie
+            animationData={data}
+            loop
+            autoplay
+            style={{ width: "100%", height: "auto" }}
+          />
+        ) : (
+          <div className="w-full h-full py-10 sm:py-16" />
+        )}
       </div>
     </div>
   );
@@ -57,20 +59,19 @@ function LottieDecoration({ url, className, loop = true }: { url: string; classN
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
     fetch(url).then(r => r.json()).then(setData).catch(console.error);
   }, [url]);
 
-  if (!data) return null;
-
   return (
     <div className={`animate-on-scroll absolute pointer-events-none z-0 ${className}`}>
-      <Lottie
-        animationData={data}
-        loop={loop}
-        autoplay
-        style={{ width: "100%", height: "100%" }}
-      />
+      {data && (
+        <Lottie
+          animationData={data}
+          loop={loop}
+          autoplay
+          style={{ width: "100%", height: "100%" }}
+        />
+      )}
     </div>
   );
 }
@@ -368,22 +369,21 @@ function LottieInline({ url, className = "" }: { url: string; className?: string
   const [data, setData] = useState<any>(null);
 
   useEffect(() => {
-    if (typeof window === "undefined") return;
     fetch(url).then(r => r.json()).then(setData).catch(console.error);
   }, [url]);
 
-  if (!data) {
-    return <div className={`py-10 sm:py-16 ${className}`} />;
-  }
-
   return (
     <div className={`animate-on-scroll pointer-events-none z-0 ${className}`}>
-      <Lottie
-        animationData={data}
-        loop
-        autoplay
-        style={{ width: "100%", height: "100%" }}
-      />
+      {data ? (
+        <Lottie
+          animationData={data}
+          loop
+          autoplay
+          style={{ width: "100%", height: "100%" }}
+        />
+      ) : (
+        <div className="w-full h-full py-10 sm:py-16" />
+      )}
     </div>
   );
 }
