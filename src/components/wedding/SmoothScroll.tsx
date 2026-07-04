@@ -1,3 +1,5 @@
+"use client";
+
 import { useEffect } from "react";
 import Lenis from "lenis";
 import gsap from "gsap";
@@ -26,6 +28,17 @@ export function SmoothScroll() {
     const tickerFn = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tickerFn);
     gsap.ticker.lagSmoothing(0);
+
+    // Refresh ScrollTrigger when DOM resizes (e.g. images or Lotties load)
+    const resizeObserver = new ResizeObserver(() => {
+      ScrollTrigger.refresh();
+    });
+    resizeObserver.observe(document.body);
+
+    // Also force a refresh a few times during initial load just in case
+    let timeouts = [100, 500, 1000, 2000].map(ms => 
+      setTimeout(() => ScrollTrigger.refresh(), ms)
+    );
 
     // Intercept anchor clicks for smooth scrolling
     const handleHashClick = (e: MouseEvent) => {
@@ -124,6 +137,8 @@ export function SmoothScroll() {
     });
 
     return () => {
+      resizeObserver.disconnect();
+      timeouts.forEach(clearTimeout);
       document.documentElement.removeEventListener("click", handleHashClick);
       ctx.revert();
       gsap.ticker.remove(tickerFn);

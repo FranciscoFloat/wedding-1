@@ -1,0 +1,12 @@
+var R=require("../../chunks/ssr/[turbopack]_runtime.js")("server/app/_not-found/page.js")
+R.c("server/chunks/ssr/[root-of-the-server]__0ab45jv._.js")
+R.c("server/chunks/ssr/057c_next_dist_esm_build_templates_app-page_1zvd6_5.js")
+R.c("server/chunks/ssr/[root-of-the-server]__03cm8wp._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__1xavias._.js")
+R.c("server/chunks/ssr/[root-of-the-server]__15qa5wk._.js")
+R.c("server/chunks/ssr/057c_next_dist_client_components_1pvn1i1._.js")
+R.c("server/chunks/ssr/057c_next_dist_client_components_builtin_forbidden_16f23zm.js")
+R.c("server/chunks/ssr/057c_next_dist_client_components_builtin_unauthorized_0gtfwnx.js")
+R.c("server/chunks/ssr/1lew_remium Wedding Landing__next-internal_server_app__not-found_page_actions_1o5xuew.js")
+R.m(46729)
+module.exports=R.m(46729).exports

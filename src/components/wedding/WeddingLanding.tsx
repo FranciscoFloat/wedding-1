@@ -1,3 +1,5 @@
+"use client";
+
 import { Countdown } from "@/components/wedding/Countdown";
 import { RSVPForm } from "@/components/wedding/RSVPForm";
 import { SmoothScroll } from "@/components/wedding/SmoothScroll";

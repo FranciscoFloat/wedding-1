@@ -1,0 +1,3 @@
+module.exports=[60890,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(38638);a.n(d("[project]/Downloads/Premium Wedding Landing/node_modules/next/dist/client/components/builtin/global-error.js <module evaluation>"))},28302,(a,b,c)=>{let{createClientModuleProxy:d}=a.r(38638);a.n(d("[project]/Downloads/Premium Wedding Landing/node_modules/next/dist/client/components/builtin/global-error.js"))},33323,a=>{"use strict";a.i(60890);var b=a.i(28302);a.n(b)},45670,a=>{a.n(a.i(33323))}];
+
+//# sourceMappingURL=057c_next_dist_client_components_builtin_global-error_08priu_.js.map
