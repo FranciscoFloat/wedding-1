@@ -7,9 +7,12 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 /**
  * Client-only smooth scroll + scroll-triggered reveals.
- * - Lenis drives smooth scrolling for the whole page.
- * - GSAP ScrollTrigger animates `.reveal-section` and staggers
- *   `.animate-on-scroll` children into view.
+ *
+ * KEY FIX: We use `gsap.fromTo()` with `immediateRender: false` instead of
+ * `gsap.from()`. This ensures GSAP does NOT set elements to opacity:0
+ * immediately on mount. Without this, if ScrollTrigger recalculates positions
+ * AFTER Lottie/image assets load (which shift the page height), elements
+ * whose trigger points have already passed stay permanently invisible.
  */
 export function SmoothScroll() {
   useEffect(() => {
@@ -17,96 +20,94 @@ export function SmoothScroll() {
 
     gsap.registerPlugin(ScrollTrigger);
 
+    // Lenis smooth scroll
     const lenis = new Lenis({
       duration: 1.2,
       easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
       smoothWheel: true,
     });
 
-    // Sync Lenis with GSAP's ticker so ScrollTrigger stays in sync.
     lenis.on("scroll", ScrollTrigger.update);
     const tickerFn = (time: number) => lenis.raf(time * 1000);
     gsap.ticker.add(tickerFn);
     gsap.ticker.lagSmoothing(0);
 
-    // Refresh ScrollTrigger when DOM resizes (e.g. images or Lotties load)
-    const resizeObserver = new ResizeObserver(() => {
-      ScrollTrigger.refresh();
-    });
+    // Refresh ScrollTrigger when images/Lotties load and shift the layout
+    const resizeObserver = new ResizeObserver(() => ScrollTrigger.refresh());
     resizeObserver.observe(document.body);
 
-    // Also force a refresh a few times during initial load just in case
-    let timeouts = [100, 500, 1000, 2000].map(ms => 
+    // Staggered refreshes during initial load to catch any late-loading assets
+    const refreshTimeouts = [200, 600, 1200, 2500].map((ms) =>
       setTimeout(() => ScrollTrigger.refresh(), ms)
     );
 
-    // Intercept anchor clicks for smooth scrolling
+    // Smooth anchor navigation
     const handleHashClick = (e: MouseEvent) => {
-      const target = e.target as HTMLElement;
-      const anchor = target.closest("a");
-      if (anchor && anchor.hash && anchor.hash.startsWith("#") && anchor.pathname === window.location.pathname) {
-        const id = anchor.hash;
-        if (document.querySelector(id)) {
-          e.preventDefault();
-          lenis.scrollTo(id, { offset: -80 }); // Offset for the fixed header
-        }
+      const anchor = (e.target as HTMLElement).closest("a");
+      if (
+        anchor?.hash?.startsWith("#") &&
+        anchor.pathname === window.location.pathname &&
+        document.querySelector(anchor.hash)
+      ) {
+        e.preventDefault();
+        lenis.scrollTo(anchor.hash, { offset: -80 });
       }
     };
     document.documentElement.addEventListener("click", handleHashClick);
 
-    // Reveal animations & Parallax
+    // ── Reveal animations ────────────────────────────────────────────────────
     const ctx = gsap.context(() => {
-      // General section reveal
+
+      // Section reveal — animate children if present, else animate the section itself
       gsap.utils.toArray<HTMLElement>(".reveal-section").forEach((section) => {
-        const targets = section.querySelectorAll<HTMLElement>(
-          ".animate-on-scroll",
+        const targets = Array.from(
+          section.querySelectorAll<HTMLElement>(".animate-on-scroll")
         );
+        const els = targets.length > 0 ? targets : [section];
 
-        if (targets.length === 0) {
-          gsap.from(section, {
-            opacity: 0,
-            y: 40,
+        gsap.fromTo(
+          els,
+          { opacity: 0, y: 40 },
+          {
+            opacity: 1,
+            y: 0,
             duration: 1,
             ease: "power3.out",
+            stagger: targets.length > 0 ? 0.12 : 0,
+            immediateRender: false,
             scrollTrigger: {
               trigger: section,
-              start: "top 85%",
+              start: "top 88%",
               toggleActions: "play none none none",
+              once: true,
             },
-          });
-        } else {
-          gsap.from(targets, {
-            opacity: 0,
-            y: 30,
-            duration: 1,
-            ease: "power3.out",
-            stagger: 0.12,
-            scrollTrigger: {
-              trigger: section,
-              start: "top 80%",
-              toggleActions: "play none none none",
-            },
-          });
-        }
+          }
+        );
       });
 
-      // Gallery Images Reveal
+      // Gallery image reveals
       gsap.utils.toArray<HTMLElement>(".gallery-img").forEach((item) => {
-        gsap.from(item, {
-          scale: 0.8,
-          opacity: 0,
-          rotation: 2,
-          duration: 1.2,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: item,
-            start: "top 85%",
-            toggleActions: "play none none none",
-          },
-        });
+        gsap.fromTo(
+          item,
+          { scale: 0.88, opacity: 0, rotation: 2 },
+          {
+            scale: 1,
+            opacity: 1,
+            rotation: 0,
+            duration: 1.2,
+            ease: "power3.out",
+            immediateRender: false,
+            scrollTrigger: {
+              trigger: item,
+              start: "top 88%",
+              toggleActions: "play none none none",
+              once: true,
+            },
+          }
+        );
       });
 
-      // Parallax Backgrounds (e.g. Hero image)
+      // Parallax backgrounds
       gsap.utils.toArray<HTMLElement>(".parallax-bg").forEach((bg) => {
         gsap.to(bg, {
           yPercent: 30,
@@ -120,9 +121,9 @@ export function SmoothScroll() {
         });
       });
 
-      // Parallax Items (e.g. Floating images in story/gallery)
+      // Parallax floating items
       gsap.utils.toArray<HTMLElement>(".parallax-item").forEach((item) => {
-        const speed = item.dataset.speed ? parseFloat(item.dataset.speed) : 0.5;
+        const speed = parseFloat(item.dataset.speed ?? "0.5");
         gsap.to(item, {
           y: () => -100 * speed,
           ease: "none",
@@ -138,7 +139,7 @@ export function SmoothScroll() {
 
     return () => {
       resizeObserver.disconnect();
-      timeouts.forEach(clearTimeout);
+      refreshTimeouts.forEach(clearTimeout);
       document.documentElement.removeEventListener("click", handleHashClick);
       ctx.revert();
       gsap.ticker.remove(tickerFn);
