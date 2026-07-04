@@ -1,5 +1,6 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { WeddingLanding } from "@/components/wedding/WeddingLanding";
+import { useEffect, useState } from "react";
 
 function LoadingFallback() {
   return (
@@ -27,10 +28,19 @@ function LoadingFallback() {
   );
 }
 
+/**
+ * ClientOnlyLanding renders a spinner on the server AND during the first
+ * client render (so SSR HTML and initial hydration match — no React #418).
+ * After hydration, useEffect fires and we swap to the real landing page.
+ */
 function ClientOnlyLanding() {
-  if (typeof window === "undefined") {
-    return <LoadingFallback />;
-  }
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return <LoadingFallback />;
   return <WeddingLanding />;
 }
 
