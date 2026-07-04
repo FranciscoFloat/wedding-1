@@ -20,13 +20,15 @@ export default function Page() {
       {/* Intro Video Overlay */}
       {!introFinished && (
         <div 
-          className={`fixed inset-0 z-[100] bg-black flex items-center justify-center transition-opacity duration-1000 ${fadeOut ? "opacity-0" : "opacity-100"}`}
+          style={{ zIndex: 99999 }}
+          className={`fixed inset-0 bg-black flex items-center justify-center transition-opacity duration-1000 ${fadeOut ? "opacity-0" : "opacity-100"}`}
         >
           <video
             autoPlay
             muted
             playsInline
             onEnded={finishIntro}
+            onError={finishIntro}
             className="w-full h-full object-cover"
           >
             <source src="/queria_animaciones_tipo_una_in.mp4" type="video/mp4" />
@@ -34,7 +36,8 @@ export default function Page() {
           
           <button 
             onClick={finishIntro}
-            className="absolute bottom-8 right-8 text-xs uppercase tracking-[0.3em] text-white/50 hover:text-white transition-colors z-[101]"
+            style={{ zIndex: 999999 }}
+            className="absolute bottom-8 right-8 px-4 py-2 bg-black/50 rounded-full text-xs uppercase tracking-[0.3em] text-white hover:bg-white hover:text-black transition-colors"
           >
             Omitir intro
           </button>
@@ -43,10 +46,12 @@ export default function Page() {
 
       {/* 
         Main Page 
-        While the intro hasn't finished, we restrict the height to 100vh and hide overflow.
-        This prevents Lenis or the browser from allowing scrolling while the video plays.
+        While the intro hasn't finished, we restrict the height and hide overflow.
+        We also set opacity-0 so if the video has transparency, they don't see the page.
       */}
-      <div className={!introFinished ? "h-screen overflow-hidden" : ""}>
+      <div 
+        className={!introFinished ? "h-screen overflow-hidden opacity-0 pointer-events-none" : "opacity-100 transition-opacity duration-1000"}
+      >
         <WeddingLanding />
       </div>
     </>
