@@ -1,10 +1,8 @@
 import { Countdown } from "@/components/wedding/Countdown";
 import { RSVPForm } from "@/components/wedding/RSVPForm";
 import { SmoothScroll } from "@/components/wedding/SmoothScroll";
-import { useEffect, useState, lazy, Suspense } from "react";
-
-// lottie-react uses DOM APIs at module scope — lazy-load so SSR never imports it
-const Lottie = lazy(() => import("lottie-react"));
+import { useEffect, useState } from "react";
+import Lottie from "lottie-react";
 
 
 /* Section wrapper — carries `reveal-section` hook for GSAP ScrollTrigger. */
@@ -43,14 +41,12 @@ function LottieBottom({ url, className = "" }: { url: string; className?: string
   return (
     <div className={`absolute bottom-0 left-0 w-full pointer-events-none z-0 mix-blend-multiply opacity-80 flex items-end justify-center ${className}`}>
       <div className="w-[150%] sm:w-full -ml-[25%] sm:ml-0 flex justify-center origin-bottom scale-110 sm:scale-100">
-        <Suspense fallback={null}>
-          <Lottie
-            animationData={data}
-            loop
-            autoplay
-            style={{ width: "100%", height: "auto" }}
-          />
-        </Suspense>
+        <Lottie
+          animationData={data}
+          loop
+          autoplay
+          style={{ width: "100%", height: "auto" }}
+        />
       </div>
     </div>
   );
@@ -69,14 +65,12 @@ function LottieDecoration({ url, className, loop = true }: { url: string; classN
 
   return (
     <div className={`animate-on-scroll absolute pointer-events-none z-0 ${className}`}>
-      <Suspense fallback={null}>
-        <Lottie
-          animationData={data}
-          loop={loop}
-          autoplay
-          style={{ width: "100%", height: "100%" }}
-        />
-      </Suspense>
+      <Lottie
+        animationData={data}
+        loop={loop}
+        autoplay
+        style={{ width: "100%", height: "100%" }}
+      />
     </div>
   );
 }
@@ -384,14 +378,12 @@ function LottieInline({ url, className = "" }: { url: string; className?: string
 
   return (
     <div className={`animate-on-scroll pointer-events-none z-0 ${className}`}>
-      <Suspense fallback={null}>
-        <Lottie
-          animationData={data}
-          loop
-          autoplay
-          style={{ width: "100%", height: "100%" }}
-        />
-      </Suspense>
+      <Lottie
+        animationData={data}
+        loop
+        autoplay
+        style={{ width: "100%", height: "100%" }}
+      />
     </div>
   );
 }
