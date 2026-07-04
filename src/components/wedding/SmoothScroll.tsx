@@ -27,6 +27,20 @@ export function SmoothScroll() {
     gsap.ticker.add(tickerFn);
     gsap.ticker.lagSmoothing(0);
 
+    // Intercept anchor clicks for smooth scrolling
+    const handleHashClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      const anchor = target.closest("a");
+      if (anchor && anchor.hash && anchor.hash.startsWith("#") && anchor.pathname === window.location.pathname) {
+        const id = anchor.hash;
+        if (document.querySelector(id)) {
+          e.preventDefault();
+          lenis.scrollTo(id, { offset: -80 }); // Offset for the fixed header
+        }
+      }
+    };
+    document.documentElement.addEventListener("click", handleHashClick);
+
     // Reveal animations & Parallax
     const ctx = gsap.context(() => {
       // General section reveal
@@ -110,6 +124,7 @@ export function SmoothScroll() {
     });
 
     return () => {
+      document.documentElement.removeEventListener("click", handleHashClick);
       ctx.revert();
       gsap.ticker.remove(tickerFn);
       lenis.destroy();

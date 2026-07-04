@@ -446,9 +446,53 @@ function Gifts() {
   );
 }
 
+/* -------- Header -------- */
+function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
+  const navLinks = [
+    { name: "Historia", href: "#historia" },
+    { name: "Detalles", href: "#detalles" },
+    { name: "Regalos", href: "#regalos" },
+    { name: "Asistencia", href: "#rsvp" },
+  ];
+
+  return (
+    <header
+      className={`fixed top-0 left-0 w-full z-50 transition-all duration-500 ${isScrolled ? "py-4 bg-background/90 backdrop-blur-md shadow-sm border-b border-border/40" : "py-6 bg-transparent"}`}
+    >
+      <div className="max-w-6xl mx-auto px-6 flex items-center justify-between">
+        <a href="#inicio" className="font-serif italic text-2xl text-gold drop-shadow-sm hover:opacity-80 transition-opacity">
+          S & M
+        </a>
+        <nav className="hidden md:flex items-center gap-8">
+          {navLinks.map((link) => (
+            <a
+              key={link.name}
+              href={link.href}
+              className={`text-xs uppercase tracking-[0.2em] transition-colors hover:text-gold text-ink/80 drop-shadow-sm`}
+            >
+              {link.name}
+            </a>
+          ))}
+        </nav>
+      </div>
+    </header>
+  );
+}
+
 export function WeddingLanding() {
   return (
     <main className="min-h-screen bg-background text-foreground overflow-x-hidden">
+      <Header />
       <SmoothScroll />
       <Hero />
       <Story />
