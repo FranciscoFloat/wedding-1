@@ -14,7 +14,7 @@ export default defineConfig({
     ssr: false,
   },
   nitro: {
-    preset: "static",
+    preset: "netlify",
   },
   vite: {
     build: {
