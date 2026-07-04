@@ -1,9 +1,8 @@
-import { r as __toESM } from "../_runtime.mjs";
-import { n as require_react, t as Player } from "../_libs/@lottiefiles/react-lottie-player+[...].mjs";
-import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
+import { i as __toESM } from "../_runtime.mjs";
+import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { t as Lenis } from "../_libs/lenis.mjs";
 import { n as gsapWithCSS, t as ScrollTrigger } from "../_libs/gsap.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-Cp1Fuk3e.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-BuVr2niq.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var WEDDING_DATE = /* @__PURE__ */ new Date("2027-06-14T17:00:00");
@@ -237,6 +236,7 @@ function SmoothScroll() {
 	}, []);
 	return null;
 }
+var Lottie = (0, import_react.lazy)(() => import("../_libs/lottie-react+lottie-web.mjs").then((n) => n.t));
 function Section({ id, children, className = "" }) {
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("section", {
 		id,
@@ -245,37 +245,51 @@ function Section({ id, children, className = "" }) {
 	});
 }
 function LottieBottom({ url, className = "" }) {
-	if (!Player) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
+	const [data, setData] = (0, import_react.useState)(null);
+	(0, import_react.useEffect)(() => {
+		if (typeof window === "undefined") return;
+		fetch(url).then((r) => r.json()).then(setData).catch(console.error);
+	}, [url]);
+	if (!data) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `absolute bottom-0 left-0 w-full pointer-events-none z-0 mix-blend-multiply opacity-80 flex items-end justify-center ${className}`,
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			className: "w-[150%] sm:w-full -ml-[25%] sm:ml-0 flex justify-center origin-bottom scale-110 sm:scale-100",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
-				src: url,
-				loop: true,
-				autoplay: true,
-				background: "transparent",
-				style: {
-					width: "100%",
-					height: "auto"
-				}
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Suspense, {
+				fallback: null,
+				children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lottie, {
+					animationData: data,
+					loop: true,
+					autoplay: true,
+					style: {
+						width: "100%",
+						height: "auto"
+					}
+				})
 			})
 		})
 	});
 }
 function LottieDecoration({ url, className, loop = true }) {
-	if (!Player) return null;
+	const [data, setData] = (0, import_react.useState)(null);
+	(0, import_react.useEffect)(() => {
+		if (typeof window === "undefined") return;
+		fetch(url).then((r) => r.json()).then(setData).catch(console.error);
+	}, [url]);
+	if (!data) return null;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `animate-on-scroll absolute pointer-events-none z-0 ${className}`,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
-			src: url,
-			loop,
-			autoplay: true,
-			background: "transparent",
-			style: {
-				width: "100%",
-				height: "100%"
-			}
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Suspense, {
+			fallback: null,
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lottie, {
+				animationData: data,
+				loop,
+				autoplay: true,
+				style: {
+					width: "100%",
+					height: "100%"
+				}
+			})
 		})
 	});
 }
@@ -615,18 +629,25 @@ function Footer() {
 	});
 }
 function LottieInline({ url, className = "" }) {
-	if (!Player) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
+	const [data, setData] = (0, import_react.useState)(null);
+	(0, import_react.useEffect)(() => {
+		if (typeof window === "undefined") return;
+		fetch(url).then((r) => r.json()).then(setData).catch(console.error);
+	}, [url]);
+	if (!data) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `animate-on-scroll pointer-events-none z-0 ${className}`,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
-			src: url,
-			loop: true,
-			autoplay: true,
-			background: "transparent",
-			style: {
-				width: "100%",
-				height: "100%"
-			}
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(import_react.Suspense, {
+			fallback: null,
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Lottie, {
+				animationData: data,
+				loop: true,
+				autoplay: true,
+				style: {
+					width: "100%",
+					height: "100%"
+				}
+			})
 		})
 	});
 }
@@ -779,6 +800,28 @@ function WeddingLanding() {
 		]
 	});
 }
-var SplitComponent = WeddingLanding;
+function LoadingFallback() {
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsxs)("div", {
+		style: {
+			minHeight: "100vh",
+			background: "#FAF8F5",
+			display: "flex",
+			alignItems: "center",
+			justifyContent: "center"
+		},
+		children: [/* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { style: {
+			width: 32,
+			height: 32,
+			borderRadius: "50%",
+			border: "2px solid #C9A96E",
+			borderTopColor: "transparent",
+			animation: "spin 0.8s linear infinite"
+		} }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", { children: `@keyframes spin { to { transform: rotate(360deg); } }` })]
+	});
+}
+function ClientOnlyLanding() {
+	if (typeof window === "undefined") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoadingFallback, {});
+	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WeddingLanding, {});
+}
 //#endregion
-export { SplitComponent as component };
+export { ClientOnlyLanding as component };

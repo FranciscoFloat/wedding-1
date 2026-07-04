@@ -1,7 +1,6 @@
-import { n as __require, r as __toESM, t as __commonJSMin } from "../../_runtime.mjs";
-import { n as require_react } from "../@lottiefiles/react-lottie-player+[...].mjs";
+import { i as __toESM, r as __require, t as __commonJSMin } from "../../_runtime.mjs";
+import { n as require_jsx_runtime, r as require_react } from "../react+tanstack__react-query.mjs";
 import { r as parseHref } from "../tanstack__history.mjs";
-import { n as require_jsx_runtime } from "../react+tanstack__react-query.mjs";
 import { PassThrough, Readable } from "node:stream";
 import { ReadableStream as ReadableStream$1 } from "node:stream/web";
 //#region node_modules/@tanstack/react-router/dist/esm/utils.js
