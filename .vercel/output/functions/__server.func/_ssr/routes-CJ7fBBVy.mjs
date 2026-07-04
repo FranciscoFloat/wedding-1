@@ -2,7 +2,7 @@ import { i as __toESM } from "../_runtime.mjs";
 import { n as require_jsx_runtime, r as require_react } from "../_libs/react+tanstack__react-query.mjs";
 import { t as Lenis } from "../_libs/lenis.mjs";
 import { n as gsapWithCSS, t as ScrollTrigger } from "../_libs/gsap.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-BuVr2niq.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-CJ7fBBVy.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var WEDDING_DATE = /* @__PURE__ */ new Date("2027-06-14T17:00:00");
@@ -819,8 +819,17 @@ function LoadingFallback() {
 		} }), /* @__PURE__ */ (0, import_jsx_runtime.jsx)("style", { children: `@keyframes spin { to { transform: rotate(360deg); } }` })]
 	});
 }
+/**
+* ClientOnlyLanding renders a spinner on the server AND during the first
+* client render (so SSR HTML and initial hydration match — no React #418).
+* After hydration, useEffect fires and we swap to the real landing page.
+*/
 function ClientOnlyLanding() {
-	if (typeof window === "undefined") return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoadingFallback, {});
+	const [mounted, setMounted] = (0, import_react.useState)(false);
+	(0, import_react.useEffect)(() => {
+		setMounted(true);
+	}, []);
+	if (!mounted) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(LoadingFallback, {});
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)(WeddingLanding, {});
 }
 //#endregion
