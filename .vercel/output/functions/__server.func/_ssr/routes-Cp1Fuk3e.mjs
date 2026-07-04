@@ -1,9 +1,9 @@
-import { i as __toESM } from "../_runtime.mjs";
-import { n as require_react } from "../_libs/@lottiefiles/react-lottie-player+[...].mjs";
+import { r as __toESM } from "../_runtime.mjs";
+import { n as require_react, t as Player } from "../_libs/@lottiefiles/react-lottie-player+[...].mjs";
 import { n as require_jsx_runtime } from "../_libs/react+tanstack__react-query.mjs";
 import { t as Lenis } from "../_libs/lenis.mjs";
 import { n as gsapWithCSS, t as ScrollTrigger } from "../_libs/gsap.mjs";
-//#region node_modules/.nitro/vite/services/ssr/assets/routes-D8c1b6uO.js
+//#region node_modules/.nitro/vite/services/ssr/assets/routes-Cp1Fuk3e.js
 var import_react = /* @__PURE__ */ __toESM(require_react());
 var import_jsx_runtime = require_jsx_runtime();
 var WEDDING_DATE = /* @__PURE__ */ new Date("2027-06-14T17:00:00");
@@ -245,18 +245,12 @@ function Section({ id, children, className = "" }) {
 	});
 }
 function LottieBottom({ url, className = "" }) {
-	const [PlayerComp, setPlayerComp] = (0, import_react.useState)(null);
-	(0, import_react.useEffect)(() => {
-		import("../_libs/@lottiefiles/react-lottie-player+[...].mjs").then((n) => n.t).then((module) => {
-			setPlayerComp(() => module.Player);
-		}).catch(console.error);
-	}, []);
-	if (!PlayerComp) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
+	if (!Player) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `absolute bottom-0 left-0 w-full pointer-events-none z-0 mix-blend-multiply opacity-80 flex items-end justify-center ${className}`,
 		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 			className: "w-[150%] sm:w-full -ml-[25%] sm:ml-0 flex justify-center origin-bottom scale-110 sm:scale-100",
-			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PlayerComp, {
+			children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
 				src: url,
 				loop: true,
 				autoplay: true,
@@ -270,16 +264,10 @@ function LottieBottom({ url, className = "" }) {
 	});
 }
 function LottieDecoration({ url, className, loop = true }) {
-	const [PlayerComp, setPlayerComp] = (0, import_react.useState)(null);
-	(0, import_react.useEffect)(() => {
-		import("../_libs/@lottiefiles/react-lottie-player+[...].mjs").then((n) => n.t).then((module) => {
-			setPlayerComp(() => module.Player);
-		}).catch(console.error);
-	}, []);
-	if (!PlayerComp) return null;
+	if (!Player) return null;
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `animate-on-scroll absolute pointer-events-none z-0 ${className}`,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PlayerComp, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
 			src: url,
 			loop,
 			autoplay: true,
@@ -627,16 +615,10 @@ function Footer() {
 	});
 }
 function LottieInline({ url, className = "" }) {
-	const [PlayerComp, setPlayerComp] = (0, import_react.useState)(null);
-	(0, import_react.useEffect)(() => {
-		import("../_libs/@lottiefiles/react-lottie-player+[...].mjs").then((n) => n.t).then((module) => {
-			setPlayerComp(() => module.Player);
-		}).catch(console.error);
-	}, []);
-	if (!PlayerComp) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
+	if (!Player) return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", { className: `py-10 sm:py-16 ${className}` });
 	return /* @__PURE__ */ (0, import_jsx_runtime.jsx)("div", {
 		className: `animate-on-scroll pointer-events-none z-0 ${className}`,
-		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(PlayerComp, {
+		children: /* @__PURE__ */ (0, import_jsx_runtime.jsx)(Player, {
 			src: url,
 			loop: true,
 			autoplay: true,

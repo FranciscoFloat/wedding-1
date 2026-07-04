@@ -1,4 +1,4 @@
-import { i as __toESM, t as __commonJSMin } from "../_runtime.mjs";
+import { r as __toESM, t as __commonJSMin } from "../_runtime.mjs";
 import { n as require_react } from "./@lottiefiles/react-lottie-player+[...].mjs";
 //#region node_modules/react/cjs/react-jsx-runtime.production.js
 /**
